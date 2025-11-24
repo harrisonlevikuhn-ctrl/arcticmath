@@ -119,7 +119,7 @@ if (selectedTheme === "starry") {
         },
         retina_detect: true,
       });
-    } else if (selectedTheme === "arcticmodern") {
+    } else if (selectedTheme === "deepsea") {
       particlesJS("particles-js", {
         particles: {
           number: {
