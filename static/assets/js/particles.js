@@ -123,7 +123,7 @@ if (selectedTheme === "starry") {
       particlesJS("particles-js", {
         particles: {
           number: {
-            value: 200,
+            value: 150,
             density: {
               enable: true,
               value_area: 800,
@@ -782,7 +782,6 @@ if (selectedTheme === "starry") {
       });
     }
     if (selectedTheme === null) {
-      // Deep Sea
       particlesJS("particles-js", {
         particles: {
           number: {
@@ -895,7 +894,6 @@ if (selectedTheme === "starry") {
       });
     }
 
-    // Check if Particles are enabled
     var particles = localStorage.getItem("particles");
     if (particles === "disabled" || !particles) {
       return '';
