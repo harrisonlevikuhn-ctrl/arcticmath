@@ -82,11 +82,11 @@ if (selectedTheme === "starry") {
           detect_on: "canvas",
           events: {
             onhover: {
-              enable: true,
+              enable: false,
               mode: "bubble",
             },
             onclick: {
-              enable: true,
+              enable: false,
               mode: "repulse",
             },
             resize: true,
@@ -188,11 +188,11 @@ if (selectedTheme === "starry") {
           detect_on: "canvas",
           events: {
             onhover: {
-              enable: true,
+              enable: false,
               mode: "bubble",
             },
             onclick: {
-              enable: true,
+              enable: false,
               mode: "repulse",
             },
             resize: true,
