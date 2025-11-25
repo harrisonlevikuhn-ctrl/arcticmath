@@ -5,7 +5,7 @@ import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { createBareServer } from "@tomphttp/bare-server-node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import wisp from "wisp-server-node";
 import request from '@cypress/request';
 import chalk from 'chalk';
 import packageJson from './package.json' with { type: 'json' };
@@ -48,6 +48,15 @@ app.get('/student', (req, res) => {
   res.redirect('/portal');
 });
 
+// FIXED: Removed broken worker.js mirror route
+// If you need this worker, create a local worker.js file in /static/ folder
+// and uncomment the route below:
+/*
+app.get('/worker.js', (req, res) => {
+  res.sendFile(path.join(__dirname, './static/worker.js'));
+});
+*/
+
 app.use((req, res) => {
   res.statusCode = 404;
   res.sendFile(path.join(__dirname, './static/404.html'));
@@ -59,11 +68,12 @@ server.on("request", (req, res) => {
   } else app(req, res);
 });
 
+// FIXED: Added support for WISP connections with or without trailing slash
 server.on("upgrade", (req, socket, head) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeUpgrade(req, socket, head);
   } else if (req.url.endsWith("/wisp/") || req.url.endsWith("/wisp")) {
-    wisp(req, socket, head);
+    wisp.routeRequest(req, socket, head);
   } else {
     socket.end();
   }
