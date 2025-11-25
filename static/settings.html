@@ -153,11 +153,6 @@
 <button class="option" style="width: 150px;max-width:150px;" anim="ripple" onclick="showPK()">Set Key</button><button style="width: 150px;" class="option" anim="ripple" onclick="removePK()">Remove</button>
 </div>
 <div class="settingscontainer"><br>
-  <p style="font-weight: bold;">Password Lock</p>
-  <p style="font-size:20px;">Protect The Website With A Username And Password (MOBILE COMPATIBLE)</p>
-<button class="option" style="width: 150px;max-width:150px;" anim="ripple" onclick="showPasswordLock()">Set Password</button><button style="width: 150px;" class="option" anim="ripple" onclick="removePasswordLock()">Remove</button>
-</div>
-<div class="settingscontainer"><br>
   <p style="font-weight: bold;">Background</p>
   <p>Customize The Website With A Custom Background (MOBILE COMPATIBLE)</p>
 <button class="option" style="width: 150px;max-width:150px;" anim="ripple" onclick="showBackgroundPopup()">Set Background</button><button style="width: 150px;" class="option" anim="ripple" onclick="resetBackground()">Remove</button>
@@ -195,17 +190,6 @@
     <p id="pkErrorMessage" style="display:none;font-size:13px;color:red;">Please enter a key.</p><br>
     <button anim="ripple" onclick="savePK()" class="btn-main">Save</button>
     <button anim="ripple" onclick="closePK()" class="btn-main">Cancel</button>
-  </div>
-</div>
-<div id="passwordLockPopup" class="themesExcluded">
-  <div id="passwordLockPopup-content" class="themesExcluded">
-    <h2 style="font-family:poppins;">Password Lock</h2>
-    <input type="text" id="passwordLock-username" class="popupInput" placeholder="Set Username">
-    <input type="password" id="passwordLock-password" class="popupInput" placeholder="Set Password">
-    <p style="font-size:13px;">Admin login: username: admin, password: arctic</p>
-    <p id="plErrorMessage" style="display:none;font-size:13px;color:red;">Please enter both username and password.</p><br>
-    <button anim="ripple" onclick="savePasswordLock()" class="btn-main">Save</button>
-    <button anim="ripple" onclick="closePasswordLock()" class="btn-main">Cancel</button>
   </div>
 </div>
 <div id="backgroundPopup" class="themesExcluded">
@@ -248,41 +232,6 @@
   function disableLoadingScreen() {
     localStorage.setItem('loadingScreenDisabled', 'true');
     location.reload();
-  }
-
-  function showPasswordLock() {
-    document.getElementById('passwordLockPopup').style.display = 'flex';
-  }
-
-  function closePasswordLock() {
-    document.getElementById('passwordLockPopup').style.display = 'none';
-    document.getElementById('passwordLock-username').value = '';
-    document.getElementById('passwordLock-password').value = '';
-    document.getElementById('plErrorMessage').style.display = 'none';
-  }
-
-  function savePasswordLock() {
-    const username = document.getElementById('passwordLock-username').value;
-    const password = document.getElementById('passwordLock-password').value;
-    
-    if (!username || !password) {
-      document.getElementById('plErrorMessage').style.display = 'block';
-      return;
-    }
-    
-    localStorage.setItem('arcticUsername', username);
-    localStorage.setItem('arcticPassword', password);
-    localStorage.setItem('arcticPasswordLockEnabled', 'true');
-    alert('Password lock enabled! You will need to login on your next visit.');
-    closePasswordLock();
-  }
-
-  function removePasswordLock() {
-    localStorage.removeItem('arcticUsername');
-    localStorage.removeItem('arcticPassword');
-    localStorage.removeItem('arcticPasswordLockEnabled');
-    localStorage.removeItem('arcticLoggedIn');
-    alert('Password lock removed!');
   }
 </script>
 </body>
