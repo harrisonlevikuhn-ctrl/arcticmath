@@ -6,6 +6,7 @@ import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { createBareServer } from "@tomphttp/bare-server-node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import wisp from "wisp-server-node";
+import { WebSocketServer } from 'ws';
 import request from '@cypress/request';
 import chalk from 'chalk';
 import packageJson from './package.json' with { type: 'json' };
@@ -17,6 +18,7 @@ const app = express(server);
 const version = packageJson.version;
 const discord = 'https://discord.gg/unblocking';
 
+// --- Routes ---
 const routes = [
   { route: '/mastery', file: './static/loader.html' },
   { route: '/apps', file: './static/apps.html' },
@@ -27,12 +29,7 @@ const routes = [
 ];
 
 app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use("/uv/", express.static(uvPath));
 app.use("/epoxy/", express.static(epoxyPath));
@@ -48,38 +45,40 @@ app.get('/student', (req, res) => {
   res.redirect('/portal');
 });
 
-// FIXED: Removed broken worker.js mirror route
-// If you need this worker, create a local worker.js file in /static/ folder
-// and uncomment the route below:
-/*
-app.get('/worker.js', (req, res) => {
-  res.sendFile(path.join(__dirname, './static/worker.js'));
-});
-*/
-
+// 404 fallback
 app.use((req, res) => {
   res.statusCode = 404;
   res.sendFile(path.join(__dirname, './static/404.html'));
 });
 
+// --- WISP & BareServer request handling ---
 server.on("request", (req, res) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeRequest(req, res);
-  } else app(req, res);
+  } else {
+    app(req, res);
+  }
 });
 
-// FIXED: Added support for WISP connections with or without trailing slash
+// --- WebSocket support ---
+const wss = new WebSocketServer({ noServer: true });
+
 server.on("upgrade", (req, socket, head) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeUpgrade(req, socket, head);
   } else if (req.url.endsWith("/wisp/") || req.url.endsWith("/wisp")) {
     wisp.routeRequest(req, socket, head);
   } else {
-    socket.end();
+    // Handle general WebSocket connections
+    wss.handleUpgrade(req, socket, head, (ws) => {
+      // Simple echo, can proxy messages to target server as needed
+      ws.on('message', (msg) => ws.send(msg));
+    });
   }
 });
 
-server.on('listening', () => {
+// --- Server startup ---
+server.listen({ port: 8001 }, () => {
   console.log(chalk.bgBlue.white.bold`  Welcome to Doge V4, user!  ` + '\n');
   console.log(chalk.cyan('-----------------------------------------------'));
   console.log(chalk.green('  🌟 Status: ') + chalk.bold('Active'));
@@ -93,6 +92,7 @@ server.on('listening', () => {
   console.log(chalk.cyan('-----------------------------------------------'));
 });
 
+// --- Graceful shutdown ---
 function shutdown(signal) {
   console.log(chalk.bgRed.white.bold`  Shutting Down (Signal: ${signal})  ` + '\n');
   console.log(chalk.red('-----------------------------------------------'));
@@ -105,7 +105,3 @@ function shutdown(signal) {
 
 process.on('SIGTERM', () => shutdown('SIGTERM'));
 process.on('SIGINT', () => shutdown('SIGINT'));
-
-server.listen({
-  port: 8001,
-});
