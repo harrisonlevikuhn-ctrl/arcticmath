@@ -19,7 +19,7 @@
     "@mercuryworkshop/libcurl-transport": "1.5.0",
     "@mercuryworkshop/epoxy-transport": "^2.1.28",
     "@titaniumnetwork-dev/ultraviolet": "^3.2.10",
-    "@tomphttp/bare-server-node": "^2.0.5",
+    "@tomphttp/bare-server-node": "2.0.5",
     "chalk": "^5.3.0",
     "express": "^4.18.2",
     "@mercuryworkshop/wisp-js": "^0.3.3"
