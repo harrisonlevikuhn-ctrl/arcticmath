@@ -20,9 +20,9 @@
     "url": "openAg('https://arcticmathfivenightsatfreddys1.vercel.app')"
   },
   {
-    "name": "Twitter (KINDA BROKEN)",
+    "name": "Five Nights At Freddys 2 (WORKING)",
     "imageUrl": "/assets/img/twitter-x.webp",
-    "url": "openAg('https://twitter.com')"
+    "url": "openAg('https://arcticmathfivenightsatfreddys2.vercel.app')"
   },
   {
     "name": "Reddit (NOT WORKING)",
