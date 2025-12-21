@@ -111,9 +111,9 @@
     "url": "openAg('https://github.com')"
   },
   {
-    "name": "Partners (Working)",
+    "name": "Visual Studio Code (NOT WORKING)",
     "imageUrl": "/assets/img/vscode.webp",
-    "url": "openAg('https://guns.lol/arcticpartners')",
+    "url": "openAg('https://vscode.dev')",
     "height": 130
   }
 ]
