@@ -60,9 +60,9 @@
     "url": "openAg('https://nowgg.fun')"
   },
   {
-    "name": "chess.com (KINDA BROKEN)",
+    "name": "Partners (Working)",
     "imageUrl": "/assets/img/chess.webp",
-    "url": "openAg('https://chess.com')"
+    "url": "openAg('https://guns.lol/arcticpartners')"
   },
   {
     "name": "Symbolab Math Solver (WORKING)",
