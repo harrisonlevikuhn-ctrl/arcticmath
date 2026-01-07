@@ -101,7 +101,7 @@
     "url": "openAg('https://tiktok.com')"
   },
   {
-    "name": "SpotixOS (Working)",
+    "name": "SpotixOS (NOT WORKING)",
     "imageUrl": "/assets/img/spotify.webp",
     "url": "openAg('https://spotixos.vercel.app')"
   },
