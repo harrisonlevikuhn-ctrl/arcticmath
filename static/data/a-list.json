@@ -25,9 +25,9 @@
     "url": "openAg('https://arcticmathfivenightsatfreddys2.vercel.app')"
   },
   {
-    "name": "Reddit (NOT WORKING)",
+    "name": "FIve Nights At Freddys 3 (WORKING)",
     "imageUrl": "/assets/img/reddit.webp",
-    "url": "openAg('https://reddit.com')"
+    "url": "openAg('https://arcticmathfivenightsatfreddys3.vercel.app')"
   },
   {
     "name": "Pinterest (NOT WORKING)",
