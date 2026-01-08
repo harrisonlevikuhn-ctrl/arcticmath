@@ -10,7 +10,7 @@
     "url": "openAg('https://deepai.org')"
   },
   {
-    "name": "Andriod Emulator (WORKING)",
+    "name": "Andriod Emulator (NOT WORKING)",
     "imageUrl": "/assets/img/gemini.webp",
     "url": "openAg('https://arcticmathandriodemulator.vercel.app')"
   },
