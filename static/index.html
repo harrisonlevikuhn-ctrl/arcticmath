@@ -68,7 +68,7 @@
     #discord-btn {
       font-family: inherit !important;
       font-size: 18px !important;
-      background: linear-gradient(to bottom, #4f4dd9 0%,#2b60aa 100%) !important;
+      background: linear-gradient(to bottom, #5865F2 0%, #4752C4 100%) !important;
       color: white !important;
       padding: 0.8em 1.2em !important;
       display: flex !important;
@@ -79,6 +79,11 @@
       box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2) !important;
       transition: all 0.3s !important;
       cursor: pointer !important;
+      min-width: 140px !important;
+      height: auto !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      isolation: isolate !important;
     }
     #discord-btn:hover {
       transform: translateY(-3px) !important;
@@ -93,12 +98,15 @@
       margin-left: 0.4em !important;
       transition: all 0.3s !important;
       color: white !important;
+      font-size: 18px !important;
+      font-weight: normal !important;
     }
     #discord-btn svg {
       width: 18px !important;
       height: 18px !important;
       fill: white !important;
       transition: all 0.3s !important;
+      min-width: 18px !important;
     }
     #discord-btn .svg-wrapper {
       display: flex !important;
@@ -106,10 +114,18 @@
       justify-content: center !important;
       width: 30px !important;
       height: 30px !important;
+      min-width: 30px !important;
+      min-height: 30px !important;
       border-radius: 50% !important;
       background-color: rgba(255, 255, 255, 0.2) !important;
       margin-right: 0.5em !important;
       transition: all 0.3s !important;
+      flex-shrink: 0 !important;
+    }
+    #discord-btn .svg-wrapper-1 {
+      display: flex !important;
+      align-items: center !important;
+      flex-shrink: 0 !important;
     }
     #discord-btn:hover .svg-wrapper {
       background-color: rgba(255, 255, 255, 0.5) !important;
@@ -158,7 +174,7 @@
     </form>
   </center>
 
-  <div style="position:fixed;bottom:35px;left:50%;transform:translateX(-50%);text-align:center;">
+  <div style="position:fixed;bottom:35px;left:50%;transform:translateX(-50%);text-align:center;z-index:10000;">
     <!-- From Uiverse.io by MrD4rio --> 
     <button id="discord-btn" onclick="window.open('https://discord.gg/nTFeCzNr9W', '_blank')">
       <div class="svg-wrapper-1">
