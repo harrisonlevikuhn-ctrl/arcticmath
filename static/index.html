@@ -63,70 +63,6 @@
       50% { transform: rotate(45deg) rotateX(-385deg) rotateY(25deg); }
       100% { transform: rotate(45deg) rotateX(-385deg) rotateY(385deg); }
     }
-
-    /* Discord Button Styles */
-    #discord-button {
-      font-family: inherit !important;
-      font-size: 18px !important;
-      background: linear-gradient(to bottom, #5865F2 0%, #4752C4 100%) !important;
-      background-color: #5865F2 !important;
-      color: white !important;
-      padding: 0.8em 1.2em !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      border: none !important;
-      border-radius: 25px !important;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2) !important;
-      transition: all 0.3s !important;
-      cursor: pointer !important;
-      position: relative !important;
-      z-index: 10000 !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-      width: auto !important;
-      height: auto !important;
-      float: none !important;
-      margin: 0 !important;
-      opacity: 1 !important;
-      outline: none !important;
-    }
-    #discord-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-    }
-    #discord-button:active {
-      transform: scale(0.95);
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    #discord-button span {
-      display: block;
-      margin-left: 0.4em;
-      transition: all 0.3s;
-    }
-    #discord-button svg {
-      width: 18px;
-      height: 18px;
-      fill: white;
-      transition: all 0.3s;
-    }
-    #discord-button .svg-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.2);
-      margin-right: 0.5em;
-      transition: all 0.3s;
-    }
-    #discord-button:hover .svg-wrapper {
-      background-color: rgba(255, 255, 255, 0.5);
-    }
-    #discord-button:hover svg {
-      transform: rotate(360deg);
-    }
   </style>
 </head>
 
@@ -167,18 +103,25 @@
     </form>
   </center>
 
-  <div style="position:fixed;bottom:35px;left:50%;transform:translateX(-50%);text-align:center;background:transparent;">
-    <button id="discord-button" style="background: linear-gradient(to bottom, #5865F2 0%, #4752C4 100%) !important;">
-      <div class="svg-wrapper-1">
-        <div class="svg-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="40" height="40">
-            <path fill="none" d="M0 0h24v24H0z"></path>
-            <path fill="currentColor" d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.19 12.19 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032c.001.014.01.028.021.037a13.276 13.276 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.01-.059.051.051 0 0 0-.018-.011 8.875 8.875 0 0 1-1.248-.595.05.05 0 0 1-.02-.066.051.051 0 0 1 .015-.019c.084-.063.168-.129.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.594.05.05 0 0 0-.03.03.052.052 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02.049.049 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.034.034 0 0 0-.02-.019Zm-8.198 7.307c-.789 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612Zm5.316 0c-.788 0-1.438-.724-1.438-1.612 0-.889.637-1.613 1.438-1.613.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612Z"></path>
-          </svg>
-        </div>
+  <div style="position:fixed;bottom:35px;left:50%;transform:translateX(-50%);text-align:center;">
+    <script type="text/javascript">
+      (function () {
+        var c = document.createElement('link');
+        c.type = 'text/css';
+        c.rel = 'stylesheet';
+        c.href = 'https://images.dmca.com/badges/dmca.css?ID=69966a82-521e-4db4-b85c-e39389f2d5d4';
+        var h = document.getElementsByTagName("head")[0];
+        h.appendChild(c);
+      })();
+    </script>
+    <div id="DMCA-badge">
+      <div class="dm-1 dm-1-b" style="left:0;background-color:rgb(48,69,140);border-color:rgb(135,135,135);">
+        <a href="https://www.dmca.com/" title="DMCA" style="color:white;">DMCA</a>
       </div>
-      <span>Discord</span>
-    </button>
+      <div class="dm-2 dm-2-b" style="background-color:black;border-color:black;">
+        <a href="http://www.dmca.com/Protection/Status.aspx?ID=69966a82-521e-4db4-b85c-e39389f2d5d4" title="DMCA" style="color:white;">PROTECTED</a>
+      </div>
+    </div>
   </div>
 
   <script src="/wk/wk2.js?v=3"></script>
