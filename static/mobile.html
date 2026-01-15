@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex">
   <meta name='dmca-site-verification' content='Qk1kNVczTmVYYzg3YmQrTG9HSUNaSHNWeDdwb2w4U0MvblBwZklkQllJbz01' />
+  
   <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <link rel="stylesheet" href="/assets/css/app.css?v=3">
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
@@ -81,6 +82,14 @@
     </div>
   </div>
   
+  <nav id="mytopnav" style="position:absolute;top:0;right:0;padding:20px;margin:0;background:none !important;box-shadow:none !important;border:none !important;border-radius:0 !important;">
+    <button class="btn-main" anim="ripple"
+      style="box-shadow:none !important;border:none !important;outline:none !important;background:none !important;border-radius:0 !important;"
+      onclick="window.location.href='settings.html'">
+      <i class="bi bi-gear" style="font-size:30px;"></i>Menu
+    </button>
+  </nav>
+
   <center><br>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="themesExcluded">
@@ -108,22 +117,22 @@
 
   <script>
     // handle loading screen
-    const screen = document.getElementById('loading-screen');
-    const isHidden = localStorage.getItem('loadingScreenDisabled') === 'true';
+    const loadingScreen = document.getElementById('loading-screen');
+    const isDisabled = localStorage.getItem('loadingScreenDisabled') === 'true';
 
-    if (!isHidden) {
-      screen.style.display = 'flex';
+    if (!isDisabled) {
+      loadingScreen.style.display = 'flex';
       window.addEventListener('load', () => {
-        screen.classList.add('fade-out');
+        loadingScreen.classList.add('fade-out');
         setTimeout(() => {
-          screen.style.display = 'none';
+          loadingScreen.style.display = 'none';
         }, 500);
       });
     } else {
-      screen.style.display = 'none';
+      loadingScreen.style.display = 'none';
     }
 
-    // message randomizer (Welcome text removed)
+    // message randomizer (No "Welcome" text)
     const textOptions = [
       "67 in the big 26 is crazy",
       "lock in gang",
