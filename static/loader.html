@@ -95,30 +95,53 @@
     <iframe src="" id="siteurl" title="tab1" class="first" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-orientation-lock allow-modals allow-top-navigation allow-downloads"></iframe>
   </div>
 
+  <script src="/uv/uv.bundle.js?v=3"></script>
+  <script src="/uv/uv.config.js?v=3"></script>
   <script src="/baremux/index.js?v=3"></script>
+  
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/wk/wk2.js', { scope: '/service/' }).then(() => {
+        console.log('✓ Service Worker registered');
+      }).catch(err => {
+        console.error('✗ Service Worker registration failed:', err);
+      });
+    }
+  </script>
   
   <!-- WISP Configuration for WebSocket Support -->
   <script type="module">
-    // Initialize BareMux with WISP transport for WebSocket support
-    (async function() {
+    // Wait for service worker and then initialize BareMux with WISP
+    async function initTransport() {
       try {
+        // Wait for service worker to be ready
+        if ('serviceWorker' in navigator) {
+          await navigator.serviceWorker.ready;
+        }
+        
         const { BareMuxConnection } = await import("/baremux/index.js");
         const connection = new BareMuxConnection("/baremux/worker.js");
         
-        // Configure WISP URL based on protocol
+        // Configure WISP URL
         const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
         
         // Set transport to epoxy with WISP
         await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
         
-        console.log("✓ BareMux initialized with WISP support:", wispUrl);
+        console.log("✓ BareMux initialized with WISP:", wispUrl);
       } catch (error) {
-        console.error("✗ Failed to initialize BareMux with WISP:", error);
+        console.error("✗ BareMux initialization failed:", error);
       }
-    })();
+    }
+    
+    // Initialize after page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTransport);
+    } else {
+      initTransport();
+    }
   </script>
-  
-  <script src="/wk/wk2.js?v=3"></script>
   <script src="/assets/js/themes.js?v=3"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="/assets/js/loader.js?v=3"></script>
