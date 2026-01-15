@@ -95,38 +95,8 @@
     <iframe src="" id="siteurl" title="tab1" class="first" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-orientation-lock allow-modals allow-top-navigation allow-downloads"></iframe>
   </div>
 
-  <script src="/uv/uv.bundle.js?v=3"></script>
-  <script src="/uv/uv.config.js?v=3"></script>
-  
-  <!-- Service Worker and WISP Configuration -->
-  <script type="module">
-    console.log("🔧 Starting BareMux initialization...");
-    (async () => {
-      try {
-        // Register UV service worker
-        if ('serviceWorker' in navigator) {
-          console.log("🔧 Registering service worker...");
-          await navigator.serviceWorker.register('/uv/uv.sw.js', { scope: '/service/' });
-          console.log('✓ UV Service Worker registered');
-          await navigator.serviceWorker.ready;
-          console.log('✓ Service Worker ready');
-        }
-
-        // Initialize BareMux with WISP
-        console.log("🔧 Importing BareMux...");
-        const { BareMuxConnection } = await import("/baremux/index.mjs");
-        console.log("🔧 Creating BareMux connection...");
-        const connection = new BareMuxConnection("/baremux/worker.js");
-        const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
-        console.log("🔧 Setting transport to WISP:", wispUrl);
-        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
-        console.log("✓ BareMux initialized with WISP:", wispUrl);
-      } catch(e) {
-        console.error('✗ BareMux init failed:', e);
-      }
-    })();
-  </script>
-  
+  <script src="/baremux/index.js?v=3"></script>
+  <script src="/wk/wk2.js?v=3"></script>
   <script src="/assets/js/themes.js?v=3"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="/assets/js/loader.js?v=3"></script>
