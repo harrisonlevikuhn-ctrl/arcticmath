@@ -35,9 +35,10 @@ app.use(
 
 app.use(express.static(path.join(__dirname, 'static')));
 
-// Add Service-Worker-Allowed header for UV service worker
+// IMPORTANT: Specific route must come BEFORE the general /uv/ route
 app.get("/uv/uv.sw.js", (req, res) => {
   res.setHeader("Service-Worker-Allowed", "/");
+  res.setHeader("Content-Type", "application/javascript");
   res.sendFile(path.join(uvPath, 'uv.sw.js'));
 });
 
