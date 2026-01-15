@@ -102,10 +102,17 @@
   <!-- Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/wk/wk2.js', { scope: '/service/' }).then(() => {
-        console.log('✓ Service Worker registered');
+      navigator.serviceWorker.register('/service/sw.js', { scope: '/service/' }).then(() => {
+        console.log('✓ Service Worker registered for /service/');
       }).catch(err => {
         console.error('✗ Service Worker registration failed:', err);
+      });
+      
+      // Also register for assignments scope if needed
+      navigator.serviceWorker.register('/assignments/sw.js', { scope: '/assignments/' }).then(() => {
+        console.log('✓ Service Worker registered for /assignments/');
+      }).catch(err => {
+        console.error('✗ Service Worker registration failed for /assignments/:', err);
       });
     }
   </script>
