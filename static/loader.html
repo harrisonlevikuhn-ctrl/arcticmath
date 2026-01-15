@@ -96,6 +96,28 @@
   </div>
 
   <script src="/baremux/index.js?v=3"></script>
+  
+  <!-- WISP Configuration for WebSocket Support -->
+  <script type="module">
+    // Initialize BareMux with WISP transport for WebSocket support
+    (async function() {
+      try {
+        const { BareMuxConnection } = await import("/baremux/index.js");
+        const connection = new BareMuxConnection("/baremux/worker.js");
+        
+        // Configure WISP URL based on protocol
+        const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
+        
+        // Set transport to epoxy with WISP
+        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+        
+        console.log("✓ BareMux initialized with WISP support:", wispUrl);
+      } catch (error) {
+        console.error("✗ Failed to initialize BareMux with WISP:", error);
+      }
+    })();
+  </script>
+  
   <script src="/wk/wk2.js?v=3"></script>
   <script src="/assets/js/themes.js?v=3"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
