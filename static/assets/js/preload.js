@@ -12,14 +12,15 @@ window.onload = function() {
 			if (location.protocol !== "https:" && !swAllowedHostnames.includes(location.hostname)) throw new Error("Service workers cannot be registered without https.");
 			throw new Error("Your browser doesn't support service workers.");
 		}
-		// BareMux transport already set in loader.html - removed setTransport from here
-		
+		// Service workers now registered in loader.html - removed from here
+		/*
 		await window.navigator.serviceWorker.register("/sw.js", {
 			scope: '/service/',
 		});
 		await window.navigator.serviceWorker.register("/lab.js", {
 			scope: '/assignments/',
 		});
+		*/
 		async function fetchDomains() {
 			const response = await fetch('/data/b-list.json');
 			const data = await response.json();
