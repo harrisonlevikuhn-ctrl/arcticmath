@@ -97,35 +97,29 @@
 
   <script src="/uv/uv.bundle.js?v=3"></script>
   <script src="/uv/uv.config.js?v=3"></script>
-  <script src="/baremux/index.js?v=3"></script>
   
   <!-- Service Worker and WISP Configuration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
-        try {
-          // Register UV service worker
-          await navigator.serviceWorker.register('/uv/uv.sw.js', { 
-            scope: '/service/' 
-          });
-          console.log('✓ UV Service Worker registered for /service/');
-          
-          // Wait for it to be active
+  <script type="module">
+    // Initialize immediately without waiting for load event
+    (async () => {
+      try {
+        // Register UV service worker
+        if ('serviceWorker' in navigator) {
+          await navigator.serviceWorker.register('/uv/uv.sw.js', { scope: '/service/' });
+          console.log('✓ UV Service Worker registered');
           await navigator.serviceWorker.ready;
-          
-          // Initialize BareMux with WISP transport
-          const { BareMuxConnection } = await import("/baremux/index.mjs");
-          const connection = new BareMuxConnection("/baremux/worker.js");
-          
-          const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
-          await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
-          
-          console.log("✓ BareMux initialized with WISP:", wispUrl);
-        } catch(e) {
-          console.error('✗ Initialization failed:', e);
         }
-      });
-    }
+        
+        // Initialize BareMux with WISP
+        const { BareMuxConnection } = await import("/baremux/index.mjs");
+        const connection = new BareMuxConnection("/baremux/worker.js");
+        const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
+        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+        console.log("✓ BareMux with WISP:", wispUrl);
+      } catch(e) {
+        console.error('✗ Init failed:', e);
+      }
+    })();
   </script>
   <script src="/assets/js/themes.js?v=3"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
