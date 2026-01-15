@@ -33,15 +33,6 @@ app.use(
   })
 );
 
-// CRITICAL: This MUST be before express.static to work!
-app.get("/uv/uv.sw.js", (req, res) => {
-  console.log("🔧 Serving uv.sw.js with Service-Worker-Allowed header");
-  res.setHeader("Service-Worker-Allowed", "/");
-  res.setHeader("Content-Type", "application/javascript");
-  // Use the working version from static folder
-  res.sendFile(path.join(__dirname, 'static', 'uv', 'uv.sw.js'));
-});
-
 app.use(express.static(path.join(__dirname, 'static')));
 app.use("/uv/", express.static(uvPath));
 app.use("/epoxy/", express.static(epoxyPath));
