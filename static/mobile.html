@@ -1,9 +1,9 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <meta name="robots" content="noindex">
-  
   <meta name='dmca-site-verification' content='Qk1kNVczTmVYYzg3YmQrTG9HSUNaSHNWeDdwb2w4U0MvblBwZklkQllJbz01' />
-  
   <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <link rel="stylesheet" href="/assets/css/app.css?v=3">
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
@@ -93,7 +93,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="themesExcluded">
       <h1 style="font-family:poppins;font-size:50px;color:white;">Arctic 1.0</h1>
-      <p style="font-size:30px;padding:0px;margin:0px;">Welcome</p>
+      <p id="welcome-msg" style="font-size:30px;padding:0px;margin:0px;">Welcome</p>
       <br>
     </div>
     <form method="POST" id="uform">
@@ -115,20 +115,39 @@
   <script src="/assets/js/main.js?v=3"></script>
 
   <script>
-    const loadingScreen = document.getElementById('loading-screen');
-    const isDisabled = localStorage.getItem('loadingScreenDisabled') === 'true';
+    // handle loading screen
+    const screen = document.getElementById('loading-screen');
+    const isHidden = localStorage.getItem('loadingScreenDisabled') === 'true';
 
-    if (!isDisabled) {
-      loadingScreen.style.display = 'flex';
-
+    if (!isHidden) {
+      screen.style.display = 'flex';
       window.addEventListener('load', () => {
-        loadingScreen.classList.add('fade-out');
+        screen.classList.add('fade-out');
         setTimeout(() => {
-          loadingScreen.style.display = 'none';
+          screen.style.display = 'none';
         }, 500);
       });
     } else {
-      loadingScreen.style.display = 'none';
+      screen.style.display = 'none';
     }
+
+    // message randomizer
+    const textOptions = [
+      "67 in the big 26 is crazy",
+      "lock in gang",
+      "let me guess your in school",
+      "full boxed daquan btw",
+      "double edit down window edit coned and boned edit that 200!!",
+      "mr. cargle misses mrs. hart",
+      "zander needs to get better at fortnite",
+      "full boxed peanut butter edit 200! ez",
+      "i hate windows 11",
+      "this website goated twin",
+      "its always impossible until its possible -diddy combs"
+    ];
+
+    const chosenText = textOptions[Math.floor(Math.random() * textOptions.length)];
+    document.getElementById('welcome-msg').innerText = "Welcome, " + chosenText;
   </script>
 </body>
+</html>
