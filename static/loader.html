@@ -114,7 +114,7 @@
           await navigator.serviceWorker.ready;
           
           // Initialize BareMux with WISP transport
-          const { BareMuxConnection } = await import("/baremux/index.js");
+          const { BareMuxConnection } = await import("/baremux/index.mjs");
           const connection = new BareMuxConnection("/baremux/worker.js");
           
           const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
