@@ -5,7 +5,7 @@ import { epoxyPath } from "@mercuryworkshop/epoxy-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 import { createBareServer } from "@tomphttp/bare-server-node";
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
-import { Server as WispServer } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 import request from '@cypress/request';
 import chalk from 'chalk';
 import packageJson from './package.json' with { type: 'json' };
@@ -68,17 +68,11 @@ server.on("request", (req, res) => {
   } else app(req, res);
 });
 
-// UPDATED: Using new wisp-js server
-const wispServer = new WispServer({
-  server: server,
-});
-
 server.on("upgrade", (req, socket, head) => {
   if (bareServer.shouldRoute(req)) {
     bareServer.routeUpgrade(req, socket, head);
   } else if (req.url.endsWith("/wisp/") || req.url.endsWith("/wisp")) {
-    // wisp-js handles the upgrade automatically
-    // No need to manually route
+    wisp.routeRequest(req, socket, head);
   } else {
     socket.end();
   }
