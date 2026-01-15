@@ -2,21 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <meta name='dmca-site-verification' content='Qk1kNVczTmVYYzg3YmQrTG9HSUNaSHNWeDdwb2w4U0MvblBwZklkQllJbz01' />
+  
+  <title>Arctic 1.0</title>
+
   <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <link rel="stylesheet" href="/assets/css/app.css?v=3">
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
+  
   <script rel="preload" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js?v=3"></script>
   <script src="/assets/js/particles.js?v=3"></script>
-  <title>Arctic 1.0</title>
   
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-19DCW9TFF9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-19DCW9TFF9');
+  </script>
+
   <style>
+    /* Basic Page Reset */
     body, html {
+      margin: 0;
+      padding: 0;
       overflow: hidden;
       height: 100%;
+      background-color: #000; /* fallback */
     }
 
+    /* Loading Screen Styling */
     #loading-screen {
       display: none;
       position: fixed;
@@ -36,6 +53,7 @@
       pointer-events: none;
     }
 
+    /* 3D Spinner Animation */
     .spinner {
       width: 44px;
       height: 44px;
@@ -44,13 +62,14 @@
     }
 
     .spinner > div {
-      background-color: rgba(0,77,255,0.2);
+      background-color: rgba(0, 77, 255, 0.2);
       height: 100%;
       position: absolute;
       width: 100%;
       border: 2px solid #004dff;
     }
 
+    /* Cube Faces */
     .spinner div:nth-of-type(1) { transform: translateZ(-22px) rotateY(180deg); }
     .spinner div:nth-of-type(2) { transform: rotateY(-270deg) translateX(50%); transform-origin: top right; }
     .spinner div:nth-of-type(3) { transform: rotateY(270deg) translateX(-50%); transform-origin: center left; }
@@ -63,48 +82,57 @@
       50% { transform: rotate(45deg) rotateX(-385deg) rotateY(25deg); }
       100% { transform: rotate(45deg) rotateX(-385deg) rotateY(385deg); }
     }
+
+    /* Typography fixes */
+    .themesExcluded h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 50px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    #welcome-msg {
+      font-size: 30px;
+      color: #ccc;
+      margin: 0;
+    }
   </style>
 </head>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-19DCW9TFF9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-19DCW9TFF9');
-</script>
-
 <body>
+
   <div id="loading-screen">
     <div class="spinner">
       <div></div><div></div><div></div><div></div><div></div><div></div>
     </div>
   </div>
   
-  <nav id="mytopnav" style="position:absolute;top:0;right:0;padding:20px;margin:0;background:none !important;box-shadow:none !important;border:none !important;border-radius:0 !important;">
-    <button class="btn-main" anim="ripple"
-      style="box-shadow:none !important;border:none !important;outline:none !important;background:none !important;border-radius:0 !important;"
-      onclick="window.location.href='settings.html'">
-      <i class="bi bi-gear" style="font-size:30px;"></i>Menu
+  <nav id="mytopnav" style="position:absolute; top:0; right:0; padding:20px; z-index:10;">
+    <button class="btn-main" onclick="window.location.href='settings.html'" 
+            style="background:none; border:none; color:white; cursor:pointer; outline:none;">
+      <i class="bi bi-gear" style="font-size:30px;"></i> Menu
     </button>
   </nav>
 
-  <center><br>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <center style="margin-top: 15vh;">
     <div class="themesExcluded">
-      <h1 style="font-family:poppins;font-size:50px;color:white;">Arctic 1.0</h1>
-      <p id="welcome-msg" style="font-size:30px;padding:0px;margin:0px;">Welcome</p>
-      <br>
+      <h1>Arctic 1.0</h1>
+      <p id="welcome-msg">Loading message...</p>
     </div>
+
+    <br>
+
     <form method="POST" id="uform">
-      <input type="text" name="url" class="form__input themesExcluded" id="name" tag="searchbar"
-        style="font-family:poppins;font-size:20px;width:auto;"
-        placeholder="🧊 Search Or Type URL 🧊">
+      <input type="text" name="url" class="form__input themesExcluded" id="name" 
+             style="font-family:poppins; font-size:20px; width:400px; padding: 10px; border-radius: 5px;" 
+             placeholder="🧊 Search Or Type URL 🧊">
     </form>
   </center>
 
-  <div class="footer themesExcluded" style="text-align:right;">
-    <a href="https://discord.gg/bKDKnYaayg" target="new"><i class="bi bi-discord"></i></a>
+  <div class="footer themesExcluded" style="position:fixed; bottom:20px; right:20px;">
+    <a href="https://discord.gg/bKDKnYaayg" target="_blank" style="color:white; font-size:25px;">
+      <i class="bi bi-discord"></i>
+    </a>
   </div>
 
   <script src="/wk/wk2.js?v=3"></script>
@@ -115,39 +143,44 @@
   <script src="/assets/js/main.js?v=3"></script>
 
   <script>
-    // handle loading screen
-    const screen = document.getElementById('loading-screen');
-    const isHidden = localStorage.getItem('loadingScreenDisabled') === 'true';
+    /** * Loader Logic 
+     */
+    const loader = document.getElementById('loading-screen');
+    const skipLoader = localStorage.getItem('loadingScreenDisabled') === 'true';
 
-    if (!isHidden) {
-      screen.style.display = 'flex';
+    if (!skipLoader) {
+      loader.style.display = 'flex';
       window.addEventListener('load', () => {
-        screen.classList.add('fade-out');
+        loader.classList.add('fade-out');
         setTimeout(() => {
-          screen.style.display = 'none';
+          loader.style.display = 'none';
         }, 500);
       });
     } else {
-      screen.style.display = 'none';
+      loader.style.display = 'none';
     }
 
-    // message randomizer
+    /** * Random Message Generator 
+     * (Removed "Welcome" prefix)
+     */
     const textOptions = [
       "67 in the big 26 is crazy",
       "lock in gang",
       "let me guess your in school",
       "full boxed daquan btw",
-      "double edit down window edit coned and boned edit that 200!!",
+      "double edit down window edit coned and boned edit that 200!",
       "mr. cargle misses mrs. hart",
       "zander needs to get better at fortnite",
-      "full boxed peanut butter edit 200! ez",
+      "full boxed peanut butter edit 200 ez!",
       "i hate windows 11",
       "this website goated twin",
       "its always impossible until its possible -diddy combs"
     ];
 
-    const chosenText = textOptions[Math.floor(Math.random() * textOptions.length)];
-    document.getElementById('welcome-msg').innerText = "Welcome, " + chosenText;
+    // Pick a random one and inject it
+    const randomIdx = Math.floor(Math.random() * textOptions.length);
+    document.getElementById('welcome-msg').innerText = textOptions[randomIdx];
   </script>
+
 </body>
 </html>
