@@ -99,54 +99,32 @@
   <script src="/uv/uv.config.js?v=3"></script>
   <script src="/baremux/index.js?v=3"></script>
   
-  <!-- Service Worker Registration -->
+  <!-- Service Worker and WISP Configuration -->
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service/sw.js', { scope: '/service/' }).then(() => {
-        console.log('✓ Service Worker registered for /service/');
-      }).catch(err => {
-        console.error('✗ Service Worker registration failed:', err);
-      });
-      
-      // Also register for assignments scope if needed
-      navigator.serviceWorker.register('/assignments/sw.js', { scope: '/assignments/' }).then(() => {
-        console.log('✓ Service Worker registered for /assignments/');
-      }).catch(err => {
-        console.error('✗ Service Worker registration failed for /assignments/:', err);
-      });
-    }
-  </script>
-  
-  <!-- WISP Configuration for WebSocket Support -->
-  <script type="module">
-    // Wait for service worker and then initialize BareMux with WISP
-    async function initTransport() {
-      try {
-        // Wait for service worker to be ready
-        if ('serviceWorker' in navigator) {
+      window.addEventListener('load', async () => {
+        try {
+          // Register UV service worker
+          await navigator.serviceWorker.register('/uv/uv.sw.js', { 
+            scope: '/service/' 
+          });
+          console.log('✓ UV Service Worker registered for /service/');
+          
+          // Wait for it to be active
           await navigator.serviceWorker.ready;
+          
+          // Initialize BareMux with WISP transport
+          const { BareMuxConnection } = await import("/baremux/index.js");
+          const connection = new BareMuxConnection("/baremux/worker.js");
+          
+          const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
+          await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
+          
+          console.log("✓ BareMux initialized with WISP:", wispUrl);
+        } catch(e) {
+          console.error('✗ Initialization failed:', e);
         }
-        
-        const { BareMuxConnection } = await import("/baremux/index.js");
-        const connection = new BareMuxConnection("/baremux/worker.js");
-        
-        // Configure WISP URL
-        const wispUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/wisp/";
-        
-        // Set transport to epoxy with WISP
-        await connection.setTransport("/epoxy/index.mjs", [{ wisp: wispUrl }]);
-        
-        console.log("✓ BareMux initialized with WISP:", wispUrl);
-      } catch (error) {
-        console.error("✗ BareMux initialization failed:", error);
-      }
-    }
-    
-    // Initialize after page load
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initTransport);
-    } else {
-      initTransport();
+      });
     }
   </script>
   <script src="/assets/js/themes.js?v=3"></script>
