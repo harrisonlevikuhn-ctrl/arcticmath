@@ -34,14 +34,14 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, 'static')));
-app.use("/uv/", express.static(uvPath));
 
 // Add Service-Worker-Allowed header for UV service worker
-app.use("/uv/uv.sw.js", (req, res, next) => {
+app.get("/uv/uv.sw.js", (req, res) => {
   res.setHeader("Service-Worker-Allowed", "/");
-  next();
+  res.sendFile(path.join(uvPath, 'uv.sw.js'));
 });
 
+app.use("/uv/", express.static(uvPath));
 app.use("/epoxy/", express.static(epoxyPath));
 app.use("/baremux/", express.static(baremuxPath));
 
