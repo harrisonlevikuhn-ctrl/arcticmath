@@ -38,7 +38,8 @@ app.get("/uv/uv.sw.js", (req, res) => {
   console.log("🔧 Serving uv.sw.js with Service-Worker-Allowed header");
   res.setHeader("Service-Worker-Allowed", "/");
   res.setHeader("Content-Type", "application/javascript");
-  res.sendFile(path.join(uvPath, 'uv.sw.js'));
+  // Use the working version from static folder
+  res.sendFile(path.join(__dirname, 'static', 'uv', 'uv.sw.js'));
 });
 
 app.use(express.static(path.join(__dirname, 'static')));
