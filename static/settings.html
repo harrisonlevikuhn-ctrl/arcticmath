@@ -60,56 +60,24 @@
       border: 2px solid #004dff;
     }
     
-    .spinner div:nth-of-type(1) {
-      transform: translateZ(-22px) rotateY(180deg);
-    }
-    
-    .spinner div:nth-of-type(2) {
-      transform: rotateY(-270deg) translateX(50%);
-      transform-origin: top right;
-    }
-    
-    .spinner div:nth-of-type(3) {
-      transform: rotateY(270deg) translateX(-50%);
-      transform-origin: center left;
-    }
-    
-    .spinner div:nth-of-type(4) {
-      transform: rotateX(90deg) translateY(-50%);
-      transform-origin: top center;
-    }
-    
-    .spinner div:nth-of-type(5) {
-      transform: rotateX(-90deg) translateY(50%);
-      transform-origin: bottom center;
-    }
-    
-    .spinner div:nth-of-type(6) {
-      transform: translateZ(22px);
-    }
+    .spinner div:nth-of-type(1) { transform: translateZ(-22px) rotateY(180deg); }
+    .spinner div:nth-of-type(2) { transform: rotateY(-270deg) translateX(50%); transform-origin: top right; }
+    .spinner div:nth-of-type(3) { transform: rotateY(270deg) translateX(-50%); transform-origin: center left; }
+    .spinner div:nth-of-type(4) { transform: rotateX(90deg) translateY(-50%); transform-origin: top center; }
+    .spinner div:nth-of-type(5) { transform: rotateX(-90deg) translateY(50%); transform-origin: bottom center; }
+    .spinner div:nth-of-type(6) { transform: translateZ(22px); }
     
     @keyframes spinner-y0fdc1 {
-      0% {
-        transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
-      }
-      50% {
-        transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
-      }
-      100% {
-        transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
-      }
+      0% { transform: rotate(45deg) rotateX(-25deg) rotateY(25deg); }
+      50% { transform: rotate(45deg) rotateX(-385deg) rotateY(25deg); }
+      100% { transform: rotate(45deg) rotateX(-385deg) rotateY(385deg); }
     }
   </style>
 </head>
 <body>
   <div id="loading-screen">
     <div class="spinner">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div><div></div><div></div><div></div>
     </div>
   </div>
   
@@ -181,7 +149,14 @@
   <p style="font-size:19px;">Enable Or Disable The Loading Screen That Appears When Pages Load (MOBILE COMPATIBLE)</p>
 <button style="width: 150px;" class="option" anim="ripple" onclick="enableLoadingScreen()" id="enableLS">Enable</button><button class="option" style="width: 150px;" anim="ripple" onclick="disableLoadingScreen()" id="disableLS">Disable</button>
   </div>
+
+<div class="settingscontainer"><br>
+  <p style="font-weight: bold;">Welcome Quotes</p>
+  <p style="font-size:19px;">Enable Or Disable The Random Quotes On The Home Page (MOBILE COMPATIBLE)</p>
+<button style="width: 150px;" class="option" anim="ripple" onclick="enableQuotes()" id="enableQ">Enable</button><button class="option" style="width: 150px;" anim="ripple" onclick="disableQuotes()" id="disableQ">Disable</button>
+  </div>
 </div>
+
 <div id="panicPopup" class="themesExcluded">
   <div id="panicPopup-content" class="themesExcluded">
     <h2 style="font-family:poppins;">Panic Key</h2>
@@ -231,6 +206,17 @@
   
   function disableLoadingScreen() {
     localStorage.setItem('loadingScreenDisabled', 'true');
+    location.reload();
+  }
+
+  // ADDED QUOTES FUNCTIONS
+  function enableQuotes() {
+    localStorage.removeItem('quotesDisabled');
+    location.reload();
+  }
+  
+  function disableQuotes() {
+    localStorage.setItem('quotesDisabled', 'true');
     location.reload();
   }
 </script>
