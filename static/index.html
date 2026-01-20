@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex">
   <meta name='dmca-site-verification' content='Qk1kNVczTmVYYzg3YmQrTG9HSUNaSHNWeDdwb2w4U0MvblBwZklkQllJbz01' />
+  
   <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <link rel="stylesheet" href="/assets/css/app.css?v=3">
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
@@ -130,7 +131,7 @@
       loadingScreen.style.display = 'none';
     }
 
-    // Message randomizer logic
+    // Updated Quote Logic: Prevents repeats on refresh
     const quotesDisabled = localStorage.getItem('quotesDisabled') === 'true';
     if (!quotesDisabled) {
       const textOptions = [
@@ -153,8 +154,20 @@
         "if there is a hole there is a goal",
         "To be ballin u gotta b-all-in"
       ];
-      const chosenText = textOptions[Math.floor(Math.random() * textOptions.length)];
-      document.getElementById('welcome-msg').innerText = chosenText;
+
+      // Get the index of the last quote shown from storage
+      let lastIndex = localStorage.getItem('lastQuoteIndex');
+      let newIndex;
+
+      // Keep picking a random index until it's different from the last one
+      do {
+        newIndex = Math.floor(Math.random() * textOptions.length);
+      } while (newIndex == lastIndex && textOptions.length > 1);
+
+      // Save the current index for the next refresh
+      localStorage.setItem('lastQuoteIndex', newIndex);
+
+      document.getElementById('welcome-msg').innerText = textOptions[newIndex];
     }
   </script>
 </body>
