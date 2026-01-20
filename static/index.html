@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="robots" content="noindex">
   <meta name='dmca-site-verification' content='Qk1kNVczTmVYYzg3YmQrTG9HSUNaSHNWeDdwb2w4U0MvblBwZklkQllJbz01' />
-  
   <link rel="icon" id="icon" href="/assets/img/salyte.jpg">
   <link rel="stylesheet" href="/assets/css/app.css?v=3">
   <link rel="stylesheet" href="/assets/css/menu.css?v=3">
@@ -116,7 +115,6 @@
   <script src="/assets/js/main.js?v=3"></script>
 
   <script>
-    // handle loading screen
     const loadingScreen = document.getElementById('loading-screen');
     const isDisabled = localStorage.getItem('loadingScreenDisabled') === 'true';
 
@@ -132,30 +130,32 @@
       loadingScreen.style.display = 'none';
     }
 
-    // message randomizer
-    const textOptions = [
-      "67 in the big 26 is crazy",
-      "lock in gang",
-      "let me guess your in school",
-      "full boxed daquan btw",
-      "double edit down window edit coned and boned edit that 200",
-      "mr cargle misses mrs hart",
-      "zander needs to get better at fortnite",
-      "full boxed peanut butter edit 200 ez",
-      "i hate windows 11",
-      "this website goated twin",
-      "its always impossible until its possible -diddy combs",
-      "Anything but work",
-      "The F students are inventors",
-      "Keenan Won A Wrestling Match",
-      "2AM Jay is Goated At Fortnite",
-      "i Don't Look Like Peterbot Bro",
-      "if there is a hole there is a goal",
-      "To be ballin u gotta b-all-in"
-    ];
-
-    const chosenText = textOptions[Math.floor(Math.random() * textOptions.length)];
-    document.getElementById('welcome-msg').innerText = chosenText;
+    // Message randomizer logic
+    const quotesDisabled = localStorage.getItem('quotesDisabled') === 'true';
+    if (!quotesDisabled) {
+      const textOptions = [
+        "67 in the big 26 is crazy",
+        "lock in gang",
+        "let me guess your in school",
+        "full boxed daquan btw",
+        "double edit down window edit coned and boned edit that 200",
+        "mr cargle misses mrs hart",
+        "zander needs to get better at fortnite",
+        "full boxed peanut butter edit 200 ez",
+        "i hate windows 11",
+        "this website goated twin",
+        "its always impossible until its possible -diddy combs",
+        "Anything but work",
+        "The F students are inventors",
+        "Keenan Won A Wrestling Match",
+        "2AM Jay is Goated At Fortnite",
+        "i Don't Look Like Peterbot Bro",
+        "if there is a hole there is a goal",
+        "To be ballin u gotta b-all-in"
+      ];
+      const chosenText = textOptions[Math.floor(Math.random() * textOptions.length)];
+      document.getElementById('welcome-msg').innerText = chosenText;
+    }
   </script>
 </body>
 </html>
