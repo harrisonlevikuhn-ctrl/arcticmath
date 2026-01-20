@@ -94,7 +94,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="themesExcluded">
       <h1 style="font-family:poppins;font-size:50px;color:white;">Arctic 1.0</h1>
-      <p id="welcome-msg" style="font-size:30px;padding:0px;margin:0px;"></p>
+      <p id="welcome-msg" style="font-size:30px;padding:0px;margin:0px;color:white;"></p>
       <br>
     </div>
     <form method="POST" id="uform">
@@ -131,7 +131,7 @@
       loadingScreen.style.display = 'none';
     }
 
-    // Updated Quote Logic: Prevents repeats on refresh
+    // Quote Logic: Prevents repeats on refresh
     const quotesDisabled = localStorage.getItem('quotesDisabled') === 'true';
     if (!quotesDisabled) {
       const textOptions = [
@@ -152,21 +152,19 @@
         "2AM Jay is Goated At Fortnite",
         "i Don't Look Like Peterbot Bro",
         "if there is a hole there is a goal",
-        "To be ballin u gotta b-all-in"
+        "To be ballin u gotta b-all-in",
+        "Do Your Work Bru 🥀"
       ];
 
-      // Get the index of the last quote shown from storage
       let lastIndex = localStorage.getItem('lastQuoteIndex');
       let newIndex;
 
-      // Keep picking a random index until it's different from the last one
+      // Force a different quote if the list has more than one item
       do {
         newIndex = Math.floor(Math.random() * textOptions.length);
       } while (newIndex == lastIndex && textOptions.length > 1);
 
-      // Save the current index for the next refresh
       localStorage.setItem('lastQuoteIndex', newIndex);
-
       document.getElementById('welcome-msg').innerText = textOptions[newIndex];
     }
   </script>
