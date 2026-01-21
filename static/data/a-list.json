@@ -35,12 +35,12 @@
     "url": "openAg('https://www.pinterest.com')"
   },
   {
-    "name": "Coolmathgames (WORKING)",
+    "name": "Coolmathgames (BEST OPTION FOR GAMING)",
     "imageUrl": "/assets/img/coolmathgames.webp",
     "url": "openAg('https://coolmathgames.com')"
   },
   {
-    "name": "CrazyGames (BEST OPTION FOR GAMING)",
+    "name": "CrazyGames (KINDA BROKEN)",
     "imageUrl": "/assets/img/crazygames.webp",
     "url": "openAg('https://crazygames.com')"
   },
