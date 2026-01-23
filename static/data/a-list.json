@@ -35,9 +35,9 @@
     "url": "openAg('https://www.pinterest.com')"
   },
   {
-    "name": "Coolmathgames (BEST OPTION FOR GAMING)",
+    "name": "Shuttle Math (BEST OPTION FOR GAMING)",
     "imageUrl": "/assets/img/coolmathgames.webp",
-    "url": "openAg('https://coolmathgames.com')"
+    "url": "openAg('https://shuttlemath.com')"
   },
   {
     "name": "CrazyGames (KINDA BROKEN)",
